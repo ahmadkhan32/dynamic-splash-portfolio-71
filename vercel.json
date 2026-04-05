@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "name": "dynamic-splash-portfolio",
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "http://localhost:5000/api/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/$1"
+    },
+    {
+      "src": "/(.*)",
+      "status": 200,
+      "dest": "/client/index.html"
+    }
+  ]
+}
