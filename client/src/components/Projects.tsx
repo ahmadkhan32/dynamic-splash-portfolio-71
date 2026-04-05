@@ -13,7 +13,85 @@ const categories = ["All", "Web Development", "UI/UX Design", "Data Visualizatio
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-  const [projectsData, setProjectsData] = useState<Project[]>([]);
+  const [projectsData, setProjectsData] = useState<Project[]>([
+    {
+      _id: "1",
+      title: "Evinn.pk",
+      description: "A premium e-commerce platform for high-end fashion and lifestyle products, featuring seamless checkout and product filtering.",
+      category: "Web Development",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop",
+      techStack: ["React", "Tailwind", "Node.js", "MongoDB"],
+      liveUrl: "https://evinn.pk/",
+      githubUrl: "#",
+      featured: true
+    },
+    {
+      _id: "2",
+      title: "Consultancy Pro",
+      description: "Modern business consultancy landing page designed for professional services, client management, and lead generation.",
+      category: "UI/UX Design",
+      image: "https://images.unsplash.com/photo-1454165833762-010200e7a461?q=80&w=2070&auto=format&fit=crop",
+      techStack: ["Next.js", "Framer Motion", "TypeScript"],
+      liveUrl: "https://counsultancy1.vercel.app/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      _id: "3",
+      title: "Agri-Tech Solutions",
+      description: "Advanced agriculture project focusing on smart farming solutions, crop monitoring, and sustainable resource management.",
+      category: "Data Visualization",
+      image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?q=80&w=2070&auto=format&fit=crop",
+      techStack: ["React", "Chart.js", "Node.js"],
+      liveUrl: "https://agriculture-project200.vercel.app/",
+      githubUrl: "#",
+      featured: true
+    },
+    {
+      _id: "4",
+      title: "Zroxz Official",
+      description: "A high-performance digital agency portfolio showcasing creative solutions, branding, and premium web design.",
+      category: "Branding",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2010&auto=format&fit=crop",
+      techStack: ["React", "Three.js", "Tailwind"],
+      liveUrl: "https://zroxz.com/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      _id: "5",
+      title: "Zivo Creative",
+      description: "Creative design studio platform focusing on innovative visual identities, digital marketing, and user-centric designs.",
+      category: "UI/UX Design",
+      image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964&auto=format&fit=crop",
+      techStack: ["Next.js", "Tailwind", "GSAP"],
+      liveUrl: "https://zivocreative.vercel.app/",
+      githubUrl: "#",
+      featured: true
+    },
+    {
+      _id: "6",
+      title: "ETC Webs",
+      description: "Enterprise-grade web solutions and IT services portal, delivering scalable architecture and custom development.",
+      category: "Full Stack",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+      techStack: ["React", "Express", "PostgreSQL"],
+      liveUrl: "https://etcwebs20.vercel.app/",
+      githubUrl: "#",
+      featured: false
+    },
+    {
+      _id: "7",
+      title: "Medicare Portal",
+      description: "Comprehensive healthcare management system for hospital appointments, patient records, and medical consultations.",
+      category: "Web Development",
+      image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2070&auto=format&fit=crop",
+      techStack: ["MERN Stack", "Socket.io", "React Query"],
+      liveUrl: "https://medicare-cyan-eta.vercel.app/#home",
+      githubUrl: "#",
+      featured: true
+    }
+  ]);
   const [isLoading, setIsLoading] = useState(true);
 
   const { ref, inView } = useInView({
@@ -25,10 +103,12 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         const data: Project[] = await getProjects();
-        setProjectsData(data);
+        if (data && data.length > 0) {
+          setProjectsData(data);
+        }
       } catch (error) {
         console.error("Error fetching projects:", error);
-        toast.error("Failed to load projects");
+        // Fallback is already set in the initial state
       } finally {
         setIsLoading(false);
       }
@@ -39,6 +119,7 @@ const Projects = () => {
   const filteredProjects = activeCategory === "All" 
     ? projectsData 
     : projectsData.filter(project => project.category === activeCategory);
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
