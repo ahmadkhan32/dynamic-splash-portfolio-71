@@ -16,11 +16,11 @@ const Projects = () => {
   const [projectsData, setProjectsData] = useState<Project[]>([
     {
       _id: "1",
-      title: "Evinn.pk",
-      description: "A premium e-commerce platform for high-end fashion and lifestyle products, featuring seamless checkout and product filtering.",
+      title: "Evinn Electric Bikes",
+      description: "A cutting-edge platform for smart electric bikes, showcasing high-performance EV models with integrated GPS tracking and battery analytics.",
       category: "Web Development",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop",
-      techStack: ["React", "Tailwind", "Node.js", "MongoDB"],
+      image: "https://images.unsplash.com/photo-1611243533855-f285ed3472d9?q=80&w=2070&auto=format&fit=crop",
+      techStack: ["React", "Tailwind", "Node.js", "Three.js"],
       liveUrl: "https://evinn.pk/",
       githubUrl: "#",
       featured: true
@@ -30,12 +30,13 @@ const Projects = () => {
       title: "Consultancy Pro",
       description: "Modern business consultancy landing page designed for professional services, client management, and lead generation.",
       category: "UI/UX Design",
-      image: "https://images.unsplash.com/photo-1454165833762-010200e7a461?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
       techStack: ["Next.js", "Framer Motion", "TypeScript"],
       liveUrl: "https://counsultancy1.vercel.app/",
       githubUrl: "#",
       featured: false
     },
+
     {
       _id: "3",
       title: "Agri-Tech Solutions",
