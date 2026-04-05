@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ExternalLink, Github, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -196,83 +196,92 @@ const Projects = () => {
           </div>
         ) : (
           <motion.div
+            layout
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project._id}
-                variants={itemVariants}
-                whileHover={{ y: -8 }}
-                onHoverStart={() => project._id && setHoveredProject(project._id)}
-                onHoverEnd={() => setHoveredProject(null)}
-                className="group"
-              >
-                <Card className="project-card h-full overflow-hidden">
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-4 left-4 right-4 flex gap-2">
-                        <Button size="sm" className="glass border-primary/30" asChild>
-                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <Eye className="h-4 w-4 mr-2" />
-                            Preview
-                          </a>
-                        </Button>
-                        <Button size="sm" variant="outline" className="glass border-primary/30" asChild>
-                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4" />
-                          </a>
-                        </Button>
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project) => (
+                <motion.div
+                  key={project._id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                  variants={itemVariants}
+                  whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                  onHoverStart={() => project._id && setHoveredProject(project._id)}
+                  onHoverEnd={() => setHoveredProject(null)}
+                  className="group"
+                >
+                  <Card className="project-card h-full overflow-hidden border-primary/10 hover:border-primary/30 transition-colors duration-500">
+                    <div className="relative overflow-hidden">
+                      <motion.img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-48 object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                      />
+                      
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-4 left-4 right-4 flex gap-2">
+                          <Button size="sm" className="glass border-primary/30" asChild>
+                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                              <Eye className="h-4 w-4 mr-2" />
+                              Preview
+                            </a>
+                          </Button>
+                          <Button size="sm" variant="outline" className="glass border-primary/30" asChild>
+                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              <Github className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                    
-                    {project.featured && (
-                      <div className="absolute top-4 right-4">
-                        <span className="bg-gradient-primary px-3 py-1 text-xs font-semibold rounded-full">
-                          Featured
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  <CardContent className="p-6 space-y-4">
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-xl font-semibold group-hover:text-primary transition-colors line-clamp-1">
-                          {project.title}
-                        </h3>
-                        <span className="text-sm text-muted-foreground bg-muted px-2 py-1 rounded">
-                          {project.category}
-                        </span>
-                      </div>
-                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
-                        {project.description}
-                      </p>
+                      
+                      {project.featured && (
+                        <div className="absolute top-4 right-4">
+                          <span className="bg-gradient-primary px-3 py-1 text-xs font-semibold rounded-full shadow-glow">
+                            Featured
+                          </span>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                    <CardContent className="p-6 space-y-4">
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <h3 className="text-xl font-semibold group-hover:text-primary transition-colors line-clamp-1">
+                            {project.title}
+                          </h3>
+                          <span className="text-[10px] uppercase tracking-wider text-muted-foreground bg-muted px-2 py-1 rounded">
+                            {project.category}
+                          </span>
+                        </div>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                          {project.description}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {project.techStack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 text-[10px] bg-primary/5 text-primary/80 rounded border border-primary/10"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </motion.div>
         )}
 

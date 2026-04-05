@@ -88,28 +88,41 @@ const Experience = () => {
         {/* Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary opacity-30" />
+          <motion.div 
+            initial={{ height: 0 }}
+            whileInView={{ height: "100%" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary opacity-30" 
+          />
 
           {/* Timeline Items */}
           <div className="space-y-12">
             {experienceData.map((experience, index) => (
               <motion.div
                 key={experience.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.2, duration: 0.8, ease: "easeOut" }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className={`relative flex items-center ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
                 {/* Timeline Dot */}
                 <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 z-10">
-                  <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${experience.color} shadow-glow animate-pulse-glow`} />
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 20 }}
+                    className={`w-4 h-4 rounded-full bg-gradient-to-r ${experience.color} shadow-glow animate-pulse-glow`} 
+                  />
                 </div>
 
                 {/* Content Card */}
                 <div className={`ml-12 md:ml-0 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'} md:w-5/12`}>
-                  <Card className="glass hover:shadow-card transition-all duration-500 group hover:scale-[1.02]">
+                  <Card className="glass hover:shadow-card transition-all duration-500 group hover:scale-[1.01] border-primary/10 hover:border-primary/30">
                     <CardContent className="p-6 space-y-4">
                       {/* Header */}
                       <div className="space-y-2">
@@ -117,7 +130,7 @@ const Experience = () => {
                           <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
                             {experience.title}
                           </h3>
-                          <span className={`px-3 py-1 text-xs rounded-full bg-gradient-to-r ${experience.color} text-white`}>
+                          <span className={`px-3 py-1 text-[10px] rounded-full bg-gradient-to-r ${experience.color} text-white uppercase font-bold tracking-wider`}>
                             {experience.type}
                           </span>
                         </div>
@@ -141,41 +154,77 @@ const Experience = () => {
                       </div>
 
                       {/* Description */}
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
                         {experience.description}
                       </p>
 
                       {/* Key Achievements */}
-                      <div>
-                        <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide text-primary">
+                      <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={{
+                          visible: {
+                            transition: {
+                              staggerChildren: 0.1,
+                              delayChildren: 0.3
+                            }
+                          }
+                        }}
+                      >
+                        <h4 className="font-semibold mb-3 text-xs uppercase tracking-widest text-primary">
                           Key Achievements
                         </h4>
                         <ul className="space-y-2">
                           {experience.achievements.map((achievement, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                            <motion.li 
+                              key={i} 
+                              variants={{
+                                hidden: { opacity: 0, x: -10 },
+                                visible: { opacity: 1, x: 0 }
+                              }}
+                              className="flex items-start gap-2 text-sm text-muted-foreground"
+                            >
                               <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0" />
                               {achievement}
-                            </li>
+                            </motion.li>
                           ))}
                         </ul>
-                      </div>
+                      </motion.div>
 
                       {/* Technologies */}
-                      <div>
-                        <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide text-primary">
+                      <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={{
+                          visible: {
+                            transition: {
+                              staggerChildren: 0.05,
+                              delayChildren: 0.5
+                            }
+                          }
+                        }}
+                      >
+                        <h4 className="font-semibold mb-3 text-xs uppercase tracking-widest text-primary">
                           Technologies & Tools
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {experience.technologies.map((tech) => (
-                            <span
+                            <motion.span
                               key={tech}
-                              className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full border border-primary/20"
+                              variants={{
+                                hidden: { opacity: 0, scale: 0.8 },
+                                visible: { opacity: 1, scale: 1 }
+                              }}
+                              whileHover={{ scale: 1.1, backgroundColor: "rgba(var(--primary), 0.1)" }}
+                              className="px-3 py-1 text-[10px] bg-primary/10 text-primary rounded-full border border-primary/20 cursor-default"
                             >
                               {tech}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
-                      </div>
+                      </motion.div>
                     </CardContent>
                   </Card>
                 </div>
@@ -183,6 +232,7 @@ const Experience = () => {
             ))}
           </div>
         </div>
+
 
         {/* Skills Summary */}
         <motion.div

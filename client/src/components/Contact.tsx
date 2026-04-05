@@ -166,18 +166,25 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
             className="space-y-8"
           >
-            <div>
+            <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}>
               <h3 className="text-2xl font-bold mb-6">Let's Start a Conversation</h3>
               <p className="text-muted-foreground leading-relaxed mb-8">
                 Whether you need a complete design overhaul, a new website, or just want to 
                 discuss your project ideas, I'm here to help. I typically respond within 24 hours.
               </p>
-            </div>
+            </motion.div>
 
             {/* Contact Info Cards */}
             <div className="space-y-4">
@@ -185,10 +192,12 @@ const Contact = () => {
                 <motion.a
                   key={index}
                   href={info.link}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.4 + index * 0.1, duration: 0.6 }}
-                  whileHover={{ scale: 1.02 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  whileHover={{ scale: 1.02, backgroundColor: "rgba(var(--primary), 0.05)" }}
+                  whileTap={{ scale: 0.98 }}
                   className="flex items-center gap-4 glass p-4 rounded-xl hover:bg-primary/10 transition-all duration-300 group"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -204,9 +213,10 @@ const Contact = () => {
 
             {/* Social Links */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 }
+              }}
               className="pt-8 border-t border-border"
             >
               <h4 className="font-semibold mb-4">Follow My Work</h4>
@@ -215,8 +225,8 @@ const Contact = () => {
                   <motion.a
                     key={social.name}
                     href={social.href}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.15, y: -3, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
                     className="glass p-3 rounded-xl hover:bg-primary/20 transition-all duration-300 group"
                     title={`${social.name} - ${social.username}`}
                   >
@@ -226,6 +236,7 @@ const Contact = () => {
               </div>
             </motion.div>
           </motion.div>
+
 
           {/* Contact Form */}
           <motion.div
