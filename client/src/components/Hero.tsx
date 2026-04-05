@@ -26,14 +26,37 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8"
+          className="space-y-6 flex flex-col items-center"
         >
-          {/* Main Heading */}
-          <div className="space-y-4">
+          {/* Profile Picture Top - Rectangular Frame */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="flex justify-center mb-10"
+          >
+            <div className="relative group">
+              {/* Animated Glow Border */}
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-primary via-purple-600 to-primary rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200 animate-pulse-glow"></div>
+              
+              {/* Rectangular Image Container */}
+              <div className="relative overflow-hidden rounded-2xl border-4 border-background shadow-2xl bg-muted aspect-[4/5] w-64 md:w-80 lg:w-96">
+                <img 
+                  src="/profile.png" 
+                  alt="Muhammad Ahmad Khan" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+
+          {/* Main Heading Below Image */}
+          <div className="space-y-3">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
               className="text-lg md:text-xl text-muted-foreground"
             >
               Hello, I'm
@@ -42,21 +65,23 @@ const Hero = () => {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold"
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold"
             >
-              <span className="gradient-text">Alex Chen</span>
+              <span className="gradient-text uppercase tracking-tight">Muhammad Ahmad Khan</span>
             </motion.h1>
             
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground"
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="text-xl md:text-2xl font-medium text-primary tracking-wide"
             >
-              Creative Designer & Developer
+              MERN Stack Developer | SEO Specialist | Software Engineer
             </motion.p>
           </div>
+
+
 
           {/* Description */}
           <motion.p

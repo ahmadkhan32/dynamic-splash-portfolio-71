@@ -1,5 +1,6 @@
 import { SplashCursor } from "@/components/ui/splash-cursor";
 import Hero from "@/components/Hero";
+import About from "@/components/About";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Testimonials from "@/components/Testimonials";
@@ -15,11 +16,13 @@ const Index = () => {
       {/* Main Content */}
       <main>
         <Hero />
+        <About />
         <Projects />
         <Experience />
         <Testimonials />
         <Contact />
       </main>
+
       
       <Footer />
     </div>

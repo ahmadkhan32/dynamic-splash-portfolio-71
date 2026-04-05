@@ -6,73 +6,58 @@ import { Card, CardContent } from "@/components/ui/card";
 const experienceData = [
   {
     id: 1,
-    title: "Senior UI/UX Designer",
-    company: "TechFlow Solutions",
-    location: "San Francisco, CA",
-    period: "2022 - Present",
-    type: "Full-time",
-    description: "Leading design initiatives for enterprise SaaS products, managing a team of 4 designers, and establishing design systems that improved development efficiency by 40%.",
+    title: "MERN Stack Developer & SEO Specialist",
+    company: "Freelance / Projects",
+    location: "Global",
+    period: "2023 - Present",
+    type: "Freelance",
+    description: "Developing scalable web applications and providing SEO optimization for diverse clients. Specialized in building high-quality REST APIs, secure authentication systems, and optimized eCommerce platforms.",
     achievements: [
-      "Redesigned core platform resulting in 35% increase in user engagement",
-      "Implemented design system used across 8 product lines",
-      "Mentored junior designers and conducted design workshops",
-      "Collaborated with engineering teams using Figma and design tokens"
+      "Built a full-stack MERN Blog platform with secure JWT authentication and admin dashboard",
+      "Developed an eCommerce Product Research system for automated SEO & Keyword-based listing optimization",
+      "Created a robust Authentication System with protected routes and persistent user sessions",
+      "Delivered high-performance React-based portfolio solutions for professional clients"
     ],
-    technologies: ["Figma", "Adobe Creative Suite", "Principle", "React", "Design Systems"],
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "Tailwind CSS", "JWT"],
     color: "from-purple-500 to-pink-500"
   },
   {
     id: 2,
-    title: "Product Designer",
-    company: "InnovateLab",
-    location: "New York, NY",
-    period: "2020 - 2022",
+    title: "Keyword Research & eCommerce Specialist",
+    company: "Latitude Marketing Company",
+    location: "Remote",
+    period: "June 2023 - August 2023",
     type: "Full-time",
-    description: "Designed user experiences for mobile and web applications in the fintech sector, focusing on accessibility and inclusive design principles.",
+    description: "Successfully handled high-volume keyword research and eCommerce platform optimization for global marketplaces.",
     achievements: [
-      "Led UX research initiatives with 500+ user interviews",
-      "Designed mobile app with 4.8 App Store rating",
-      "Reduced customer support tickets by 25% through improved UX",
-      "Established usability testing protocols"
+      "Provided profitable keyword research with low competition and high search volume",
+      "Optimized product listings for Amazon, eBay, Shopee, and Lazada using Helium 10 & Jungle Scout",
+      "Delivered comprehensive client reports on time with data-driven marketing insights",
+      "Improved search rankings for client stores through strategic On-page and Off-page SEO"
     ],
-    technologies: ["Sketch", "InVision", "Hotjar", "UserTesting", "Miro"],
+    technologies: ["Helium 10", "Jungle Scout", "On-page SEO", "Marketplace Optimization", "Ahrefs"],
     color: "from-blue-500 to-cyan-500"
   },
   {
     id: 3,
-    title: "Frontend Developer & Designer",
-    company: "Creative Digital Agency",
-    location: "Austin, TX",
-    period: "2018 - 2020",
-    type: "Full-time",
-    description: "Hybrid role combining frontend development and design for diverse client projects ranging from startups to Fortune 500 companies.",
+    title: "Software Engineering Intern",
+    company: "Education Projects",
+    location: "SEGi Kota Damansara",
+    period: "2021 - 2024",
+    type: "Internship / Academic",
+    description: "Applied software engineering principles to build technical solutions during Bachelor's and Diploma programs.",
     achievements: [
-      "Delivered 20+ client projects with 100% on-time completion",
-      "Developed component library reducing development time by 30%",
-      "Won agency's 'Innovation Award' for creative problem solving",
-      "Trained team members on modern development practices"
+      "Developed .NET and C# applications for desktop management systems",
+      "Experimented with Flutter and Dart for cross-platform mobile development",
+      "Built full-stack web solutions using MySQL and Node.js for academic assessments",
+      "Graduated with honors from SEGi and UCLan (UK) partnership program"
     ],
-    technologies: ["React", "Vue.js", "SCSS", "Adobe XD", "WordPress"],
+    technologies: ["C#", ".NET", "MySQL", "Flutter", "Dart", "Software Architecture"],
     color: "from-green-500 to-emerald-500"
-  },
-  {
-    id: 4,
-    title: "Junior Web Designer",
-    company: "StartupBoost",
-    location: "Remote",
-    period: "2017 - 2018",
-    type: "Contract",
-    description: "Designed and developed websites for early-stage startups, focusing on conversion optimization and rapid prototyping.",
-    achievements: [
-      "Increased client conversion rates by average of 45%",
-      "Built responsive websites for 15+ startups",
-      "Collaborated with marketing teams on A/B testing",
-      "Maintained 98% client satisfaction rating"
-    ],
-    technologies: ["HTML/CSS", "JavaScript", "Photoshop", "Illustrator", "WordPress"],
-    color: "from-orange-500 to-red-500"
   }
 ];
+
+
 
 const Experience = () => {
   const { ref, inView } = useInView({

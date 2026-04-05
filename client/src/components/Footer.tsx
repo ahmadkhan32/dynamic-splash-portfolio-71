@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Heart, ArrowUp } from "lucide-react";
+import { ShoppingBag, ArrowUp } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
@@ -34,8 +35,8 @@ const Footer = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-center"
           >
-            <h3 className="text-2xl font-bold gradient-text mb-2">Alex Chen</h3>
-            <p className="text-muted-foreground">Creative Designer & Developer</p>
+            <h3 className="text-2xl font-bold gradient-text mb-2 tracking-tighter">MUHAMMAD AHMAD KHAN</h3>
+            <p className="text-muted-foreground font-medium">MERN Stack Developer | SEO Specialist | Software Engineer</p>
           </motion.div>
 
           {/* Copyright */}
@@ -46,12 +47,14 @@ const Footer = () => {
             className="text-center text-sm text-muted-foreground"
           >
             <p className="flex items-center justify-center gap-1">
-              © 2024 Alex Chen. Made with
-              <Heart className="h-4 w-4 text-red-500 fill-current animate-pulse" />
-              and lots of coffee.
+              © 2024 Muhammad Ahmad Khan. Optimized for
+              <ShoppingBag className="h-4 w-4 text-primary" />
+              Success.
             </p>
             <p className="mt-1">All rights reserved.</p>
           </motion.div>
+
+
         </div>
       </div>
     </footer>

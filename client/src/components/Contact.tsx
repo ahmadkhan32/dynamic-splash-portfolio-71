@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Send, AlertCircle, Github, Linkedin, MessageSquare, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
+import { sendContactMessage } from "@/services/contactService";
 
 interface FormData {
   name: string;
@@ -27,7 +28,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
-  const { toast } = useToast();
+  
   const { ref, inView } = useInView({
     threshold: 0.1,
     triggerOnce: true
@@ -61,15 +62,14 @@ const Contact = () => {
 
     setIsSubmitting(true);
 
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for reaching out. I'll get back to you within 24 hours.",
-        variant: "default",
+      await sendContactMessage({
+        name: formData.name,
+        email: formData.email,
+        content: `Subject: ${formData.subject}\n\n${formData.message}`
       });
+      
+      toast.success("Message Sent Successfully! I'll get back to you within 24 hours.");
 
       // Reset form
       setFormData({
@@ -80,11 +80,7 @@ const Contact = () => {
         honeypot: ''
       });
     } catch (error) {
-      toast({
-        title: "Failed to Send Message",
-        description: "Something went wrong. Please try again or contact me directly.",
-        variant: "destructive",
-      });
+      toast.error("Failed to Send Message. Please try again or contact me directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -101,19 +97,25 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "alex.chen@email.com",
-      link: "mailto:alex.chen@email.com"
+      value: "asadkhanbaloch111@gmail.com",
+      link: "mailto:asadkhanbaloch111@gmail.com"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      value: "+60182848310",
+      link: "tel:+60182848310"
+    },
+    {
+      icon: MessageSquare,
+      title: "WhatsApp",
+      value: "+923470838718",
+      link: "https://wa.me/923470838718"
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Lahore, Pakistan",
       link: "https://maps.google.com"
     }
   ];
@@ -122,22 +124,24 @@ const Contact = () => {
     {
       icon: Github,
       name: "GitHub",
-      href: "https://github.com",
-      username: "@alexchen"
+      href: "https://github.com/ahmadkhan32",
+      username: "@ahmadkhan32"
     },
     {
       icon: Linkedin,
       name: "LinkedIn",
-      href: "https://linkedin.com",
-      username: "Alex Chen"
+      href: "https://linkedin.com/in/ahmadkhan",
+      username: "Muhammad Ahmad Khan"
     },
     {
-      icon: Twitter,
-      name: "Twitter",
-      href: "https://twitter.com",
-      username: "@alexdesigns"
+      icon: ShoppingBag,
+      name: "Fiverr",
+      href: "https://www.fiverr.com/s/LYRwPL",
+      username: "asadkhanbaloch"
     }
   ];
+
+
 
   return (
     <section id="contact" className="py-20 relative">
