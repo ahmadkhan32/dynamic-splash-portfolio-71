@@ -19,7 +19,7 @@ const Projects = () => {
       title: "Evinn Electric Bikes",
       description: "A cutting-edge platform for smart electric bikes, showcasing high-performance EV models with integrated GPS tracking and battery analytics.",
       category: "Web Development",
-      image: "https://images.unsplash.com/photo-1611243533855-f285ed3472d9?q=80&w=2070&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1558981403-c5f91cbba527?q=80&w=2070&auto=format&fit=crop",
       techStack: ["React", "Tailwind", "Node.js", "Three.js"],
       liveUrl: "https://evinn.pk/",
       githubUrl: "#",
